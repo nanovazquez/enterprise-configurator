@@ -11,6 +11,7 @@ base npm Enterprise installation.
 * **couchUrl:** where should package meta-information be stored?
 * **frontDoorHost:** front-facing url for npm Enterprise.
 * **registryDBName:** name of package database.
+* **authHost:** full-url of authentication/authorization host.
 
 ## Cli
 
