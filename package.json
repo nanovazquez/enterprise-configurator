@@ -1,0 +1,27 @@
+{
+  "name": "enterprise-configurator",
+  "version": "0.0.0",
+  "description": "Shared config and cli helpers for npm Enterprise services.",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "lab -c --timeout=8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/enterprise-configurator.git"
+  },
+  "author": "Ben Coe <ben@npmjs.com>",
+  "bugs": {
+    "url": "https://github.com/npm/enterprise-configurator/issues"
+  },
+  "homepage": "https://github.com/npm/enterprise-configurator",
+  "dependencies": {
+    "cli-color": "^0.3.2",
+    "lodash": "^2.4.1",
+    "string": "^1.9.0",
+    "yargs": "^1.2.6"
+  },
+  "devDependencies": {
+    "lab": "^3.2.1"
+  }
+}
