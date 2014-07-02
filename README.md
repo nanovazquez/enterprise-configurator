@@ -12,6 +12,7 @@ base npm Enterprise installation.
 * **binaryDirectory**: 'where should package tarballs be stored on disk?',
 * **binariesHost**: 'full url of host that serves package binaries',
 * **authHost**: 'full url of the host that performs authorization and authentication',
+* **validateHost**: 'full url of host to use when validating package publications',
 * **authFetch**: 'should we authenticate package fetches?',
 * **couchUrl**: 'couch instance to write package meta information to',
 * **couchUrlRemote**: 'url of remote CouchDB for following',
