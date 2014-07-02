@@ -18,7 +18,11 @@ base npm Enterprise installation.
 * **frontDoorHost**: 'front-facing url of npm enterprise',
 * **registryDBName**: 'package meta-information DB',
 * **checkSha**: 'should shasum be checked when storing packges',
-* **whiteListPath**: 'path to whitelist to use when indexing packages'
+* **whiteListPath**: 'path to whitelist to use when indexing packages',
+* **githubHost**: 'full url of internal GitHub Enterprise appliance',
+* **authenticationMethod**: 'approach used when authenticating a user',
+* **authorizationMethod**: 'approach used to validate a package publication'
+
 
 ## Cli
 
