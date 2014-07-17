@@ -85,7 +85,7 @@ Lab.experiment('cli', function() {
 
   });
 
-  Lab.experiment('execute', function () {
+  Lab.experiment('execute', function() {
     Lab.it('should execute non-hyphenated option as command', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start']),
@@ -103,6 +103,21 @@ Lab.experiment('cli', function() {
         yargs: require('yargs')(['start', 'foobar']),
         start: function(extra) {
           Lab.expect(extra).to.eql('foobar');
+          done();
+        }
+      });
+
+      cli.run();
+    });
+  });
+
+  Lab.experiment('updateConfigWithArgs', function() {
+    Lab.it('should parse type of arguments if type is provided', function(done) {
+      var cli = Cli({
+        yargs: require('yargs')(['start', '--auth-fetch', 'false']),
+        start: function(extra) {
+          var config = (require('../lib').Config)();
+          Lab.expect(config.authFetch).to.eql(false);
           done();
         }
       });
