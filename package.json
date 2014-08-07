@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/npm/enterprise-configurator",
   "dependencies": {
-    "cli-color": "^0.3.2",
+    "chalk": "^0.5.1",
     "lodash": "^2.4.1",
     "string": "^1.9.0",
     "yargs": "^1.2.6"
