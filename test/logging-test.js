@@ -32,4 +32,10 @@ Lab.describe('logger', function()
 
         done();
     });
+
+    Lab.it('converts objects to string representations', function(done)
+    {
+        logger.info({ json: true });
+        done();
+    });
 });
