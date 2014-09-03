@@ -1,11 +1,12 @@
 {
   "name": "@npm/enterprise-configurator",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Shared config and cli helpers for npm Enterprise services.",
   "main": "./lib/index.js",
   "scripts": {
     "test": "lab -c --timeout=8000"
   },
+  "license": "proprietary",
   "repository": {
     "type": "git",
     "url": "https://github.com/npm/enterprise-configurator.git"
