@@ -124,5 +124,32 @@ Lab.experiment('cli', function() {
 
       cli.run();
     });
+
+    Lab.it('accepts array options starting with [', function(done) {
+
+      var cli = Cli({
+        yargs: require('yargs')(['start', '--validateHost', '["one", "two", "three", "four", "five"]']),
+        start: function(extra) {
+          var config = (require('../lib').Config)();
+          Lab.expect(config.validateHost).to.eql(['one', 'two', 'three', 'four', 'five']);
+          done();
+        }
+      });
+
+      cli.run();
+    });
+
+    Lab.it('accepts object options starting with {', function(done) {
+      var cli = Cli({
+        yargs: require('yargs')(['start', '--validateHost', '{ "host": "localhost", "port": 6000 }']),
+        start: function(extra) {
+          var config = (require('../lib').Config)();
+          Lab.expect(config.validateHost).to.eql({ host: 'localhost', port: 6000});
+          done();
+        }
+      });
+
+      cli.run();
+    });
   });
 });
