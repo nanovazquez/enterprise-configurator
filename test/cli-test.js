@@ -151,5 +151,19 @@ Lab.experiment('cli', function() {
 
       cli.run();
     });
+
+    Lab.it('passes non-JSON strings through untouched', function(done) {
+      var cli = Cli({
+        yargs: require('yargs')(['start', '--validateHost', '{ whatevs }']),
+        start: function(extra) {
+          var config = (require('../lib').Config)();
+          Lab.expect(config.validateHost).to.eql('{ whatevs }');
+          done();
+        }
+      });
+
+      cli.run();
+    });
+
   });
 });
