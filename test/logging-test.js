@@ -5,19 +5,21 @@ var
 
 Lab.describe('logger', function()
 {
-    Lab.it('exports four log functions', function(done)
+    Lab.it('exports six log functions', function(done)
     {
         Lab.expect(logger).to.have.property('log');
         Lab.expect(logger).to.have.property('info');
         Lab.expect(logger).to.have.property('warn');
         Lab.expect(logger).to.have.property('error');
         Lab.expect(logger).to.have.property('success');
+        Lab.expect(logger).to.have.property('trace');
 
         Lab.expect(logger.log).to.be.a('function');
         Lab.expect(logger.info).to.be.a('function');
         Lab.expect(logger.warn).to.be.a('function');
         Lab.expect(logger.error).to.be.a('function');
         Lab.expect(logger.success).to.be.a('function');
+        Lab.expect(logger.trace).to.be.a('function');
 
         done();
     });
