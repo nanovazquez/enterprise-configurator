@@ -19,7 +19,7 @@ Lab.experiment('cli', function() {
       // generates alias.
       Lab.expect(help).to.match(/-host/);
       // generates description.
-      Lab.expect(help).to.match(/package meta-information DB/)
+      Lab.expect(help).to.match(/package meta information to/)
       // generates defaults.
       Lab.expect(help).to.match(/default: .*5000.*/);
 
