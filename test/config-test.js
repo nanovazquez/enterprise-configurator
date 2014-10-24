@@ -28,4 +28,15 @@ Lab.experiment('config', function() {
     Lab.expect(config.host).to.eql('8.8.8.8');
     done();
   });
+
+  Lab.it('it should remain compatible with `registryDBName` config', function(done) {
+    var config = Config({
+      registryDBName: 'registry',
+      couchUrl: 'http://localhost:5984',
+      couchUrlRemote: 'https://skimdb.npmjs.com/'
+    });
+    Lab.expect(config.couchUrl).to.eql('http://localhost:5984/registry');
+    Lab.expect(config.couchUrlRemote).to.eql('https://skimdb.npmjs.com/registry');
+    done();
+  });
 });
