@@ -39,4 +39,23 @@ Lab.experiment('config', function() {
     Lab.expect(config.couchUrlRemote).to.eql('https://skimdb.npmjs.com/registry');
     done();
   });
+
+  Lab.it('it should default `couchUrlCache` to `couchUrlRemote` if operating as read-through cache', function(done) {
+    var config = Config({
+      couchUrlRemote: 'https://skimdb.npmjs.com/',
+      readThroughCache: true
+    });
+    Lab.expect(config.couchUrlCache).to.eql('https://skimdb.npmjs.com/');
+    done();
+  });
+
+  Lab.it('it should use `couchUrlCache` when explicitely given', function(done) {
+    var config = Config({
+      couchUrlCache: 'https://skimdb.npmjs.com/',
+      couchUrlRemote: 'https://im.trapped.in.a.url.com/',
+      readThroughCache: true
+    });
+    Lab.expect(config.couchUrlCache).to.eql('https://skimdb.npmjs.com/');
+    done();
+  });
 });
