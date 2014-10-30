@@ -45,7 +45,7 @@ Lab.experiment('config', function() {
       couchUrlRemote: 'https://skimdb.npmjs.com/',
       readThroughCache: true
     });
-    Lab.expect(config.couchUrlCache).to.eql('https://skimdb.npmjs.com/');
+    Lab.expect(config.couchUrlCache).to.eql('https://skimdb.npmjs.com/registry');
     done();
   });
 
@@ -55,6 +55,7 @@ Lab.experiment('config', function() {
       couchUrlRemote: 'https://im.trapped.in.a.url.com/',
       readThroughCache: true
     });
+
     Lab.expect(config.couchUrlCache).to.eql('https://skimdb.npmjs.com/');
     done();
   });
