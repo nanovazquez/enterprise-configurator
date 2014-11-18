@@ -10,7 +10,7 @@ Lab.experiment('cli', function() {
     Lab.it('should generate options from config class', function(done) {
       var cli = Cli();
 
-      cli.generateArgs();
+      var argv = cli.yargs.options(cli.generateArgs()).argv;
 
       var help = cli.yargs.help();
 
