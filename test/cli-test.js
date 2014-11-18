@@ -125,6 +125,19 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
+    Lab.it('should allow a true boolean variable to be overridden with a false value', function(done) {
+      var cli = Cli({
+        yargs: require('yargs')(['start', '--check-sha', 'false']),
+        start: function(extra) {
+          var config = (require('../lib').Config)();
+          Lab.expect(config.checkSha).to.eql(false);
+          done();
+        }
+      });
+
+      cli.run();
+    });
+
     Lab.it('accepts array options starting with [', function(done) {
 
       var cli = Cli({
