@@ -4,7 +4,7 @@
   "description": "Shared config and cli helpers for npm Enterprise services.",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "lab -c --timeout=8000"
+    "test": "lab -c --timeout=1000"
   },
   "license": "proprietary",
   "repository": {
