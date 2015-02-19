@@ -6,7 +6,7 @@
   "scripts": {
     "test": "lab -c --timeout=1000"
   },
-  "license": "proprietary",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/npm/enterprise-configurator.git"
