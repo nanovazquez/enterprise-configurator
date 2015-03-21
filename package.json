@@ -18,10 +18,10 @@
   "homepage": "https://github.com/npm/enterprise-configurator",
   "dependencies": {
     "bistre": "~1.0.0",
-    "bole": "~1.0.0",
+    "bole": "~2.0.0",
     "chalk": "~0.5.1",
     "lodash": "^2.4.1",
-    "numbat-emitter": "~1.1.0",
+    "numbat-emitter": "~1.1.1",
     "string": "^1.9.0",
     "yargs": "^1.2.6"
   },
