@@ -1,6 +1,6 @@
 {
   "name": "@npm/enterprise-configurator",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "Shared config and cli helpers for npm Enterprise services.",
   "main": "./lib/index.js",
   "scripts": {
