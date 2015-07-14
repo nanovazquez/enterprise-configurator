@@ -1,32 +1,32 @@
 require('../lib/config')({headless: true}); // turn off output in tests.
 
 var
-    Lab    = require('lab'),
+    Code   = require('code'),
     path   = require('path'),
     logger = require('../lib/logger');
 
-Lab.describe('logger', function()
+describe('logger', function()
 {
-    Lab.it('exports six log functions', function(done)
+    it('exports six log functions', function(done)
     {
-        Lab.expect(logger).to.have.property('log');
-        Lab.expect(logger).to.have.property('info');
-        Lab.expect(logger).to.have.property('warn');
-        Lab.expect(logger).to.have.property('error');
-        Lab.expect(logger).to.have.property('success');
-        Lab.expect(logger).to.have.property('trace');
+        Code.expect(logger.log).to.not.equal(undefined)
+        Code.expect(logger.info).to.not.equal(undefined)
+        Code.expect(logger.warn).to.not.equal(undefined)
+        Code.expect(logger.error).to.not.equal(undefined)
+        Code.expect(logger.success).to.not.equal(undefined)
+        Code.expect(logger.trace).to.not.equal(undefined)
 
-        Lab.expect(logger.log).to.be.a('function');
-        Lab.expect(logger.info).to.be.a('function');
-        Lab.expect(logger.warn).to.be.a('function');
-        Lab.expect(logger.error).to.be.a('function');
-        Lab.expect(logger.success).to.be.a('function');
-        Lab.expect(logger.trace).to.be.a('function');
+        Code.expect(typeof logger.log).to.equal('function');
+        Code.expect(typeof logger.info).to.equal('function');
+        Code.expect(typeof logger.warn).to.equal('function');
+        Code.expect(typeof logger.error).to.equal('function');
+        Code.expect(typeof logger.success).to.equal('function');
+        Code.expect(typeof logger.trace).to.equal('function');
 
         done();
     });
 
-    Lab.it('logs in a colorful way', function(done)
+    it('logs in a colorful way', function(done)
     {
         logger.log('this is a plain console log');
         logger.info('this is a plain message with a gray timestamp');
@@ -37,7 +37,7 @@ Lab.describe('logger', function()
         done();
     });
 
-    Lab.it('converts objects to string representations', function(done)
+    it('converts objects to string representations', function(done)
     {
         logger.info({ json: true });
         done();
