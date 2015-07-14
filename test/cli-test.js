@@ -1,13 +1,13 @@
 require('../lib/config')({headless: true}); // turn off output in tests.
 
-var Lab = require('lab'),
+var Code = require('code'),
   path = require('path'),
   Cli = require('../lib').Cli,
   _ = require('lodash');
 
-Lab.experiment('cli', function() {
-  Lab.experiment('generateArgs', function() {
-    Lab.it('should generate options from config class', function(done) {
+describe('cli', function() {
+  describe('generateArgs', function() {
+    it('should generate options from config class', function(done) {
       var cli = Cli();
 
       var argv = cli.yargs.options(cli.generateArgs()).argv;
@@ -15,37 +15,37 @@ Lab.experiment('cli', function() {
       var help = cli.yargs.help();
 
       // generations option.
-      Lab.expect(help).to.match(/-h/);
+      Code.expect(help).to.match(/-h/);
       // generates alias.
-      Lab.expect(help).to.match(/-host/);
+      Code.expect(help).to.match(/-host/);
       // generates description.
-      Lab.expect(help).to.match(/package meta information to/)
+      Code.expect(help).to.match(/couch instance to write package meta/)
       // generates defaults.
-      Lab.expect(help).to.match(/default: .*5000.*/);
+      Code.expect(help).to.match(/default: .*5000.*/);
 
       done();
     });
 
-    Lab.it('should generate list of possible usage commands', function(done) {
+    it('should generate list of possible usage commands', function(done) {
       var cli = Cli();
 
       cli.generateArgs();
 
       var help = cli.yargs.help();
 
-      Lab.expect(help).to.match(/start/);
+      Code.expect(help).to.match(/start/);
 
       done();
     });
   });
 
-  Lab.experiment('help', function() {
-    Lab.it('should print help if no arguments are given', function(done) {
+  describe('help', function() {
+    it('should print help if no arguments are given', function(done) {
       var cli = Cli({
         yargs: require('yargs')([]),
         logger: {
           log: function(str) {
-            Lab.expect(str).to.match(/Usage:/);
+            Code.expect(str).to.match(/Usage:/);
             done();
           }
         }
@@ -54,12 +54,12 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('should print help if --help is given', function(done) {
+    it('should print help if --help is given', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['generate', '--help']),
         logger: {
           log: function(str) {
-            Lab.expect(str).to.match(/Usage:/);
+            Code.expect(str).to.match(/Usage:/);
             done();
           }
         }
@@ -68,13 +68,13 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('should print help if command is not found', function(done) {
+    it('should print help if command is not found', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['foobar']),
         logger: {
           error: function(str) {},
           log: function(str) {
-            Lab.expect(str).to.match(/Usage:/);
+            Code.expect(str).to.match(/Usage:/);
             done();
           }
         }
@@ -85,12 +85,12 @@ Lab.experiment('cli', function() {
 
   });
 
-  Lab.experiment('execute', function() {
-    Lab.it('should execute non-hyphenated option as command', function(done) {
+  describe('execute', function() {
+    it('should execute non-hyphenated option as command', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start']),
         start: function(extra) {
-          Lab.expect(extra).to.be.undefined;
+          Code.expect(extra).to.be.undefined;
           done();
         }
       });
@@ -98,11 +98,11 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('should pass additional non-hyphenated commands as args', function(done) {
+    it('should pass additional non-hyphenated commands as args', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start', 'foobar']),
         start: function(extra) {
-          Lab.expect(extra).to.eql('foobar');
+          Code.expect(extra).to.equal('foobar');
           done();
         }
       });
@@ -111,13 +111,13 @@ Lab.experiment('cli', function() {
     });
   });
 
-  Lab.experiment('updateConfigWithArgs', function() {
-    Lab.it('should parse type of arguments if type is provided', function(done) {
+  describe('updateConfigWithArgs', function() {
+    it('should parse type of arguments if type is provided', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start', '--auth-fetch', 'false']),
         start: function(extra) {
           var config = (require('../lib').Config)();
-          Lab.expect(config.authFetch).to.eql(false);
+          Code.expect(config.authFetch).to.equal(false);
           done();
         }
       });
@@ -125,12 +125,12 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('should allow a true boolean variable to be overridden with a false value', function(done) {
+    it('should allow a true boolean variable to be overridden with a false value', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start', '--check-sha', 'false']),
         start: function(extra) {
           var config = (require('../lib').Config)();
-          Lab.expect(config.checkSha).to.eql(false);
+          Code.expect(config.checkSha).to.equal(false);
           done();
         }
       });
@@ -138,13 +138,13 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('accepts array options starting with [', function(done) {
+    it('accepts array options starting with [', function(done) {
 
       var cli = Cli({
         yargs: require('yargs')(['start', '--validateHost', '["one", "two", "three", "four", "five"]']),
         start: function(extra) {
           var config = (require('../lib').Config)();
-          Lab.expect(config.validateHost).to.eql(['one', 'two', 'three', 'four', 'five']);
+          Code.expect(config.validateHost).to.deep.equal(['one', 'two', 'three', 'four', 'five']);
           done();
         }
       });
@@ -152,12 +152,12 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('accepts object options starting with {', function(done) {
+    it('accepts object options starting with {', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start', '--validateHost', '{ "host": "localhost", "port": 6000 }']),
         start: function(extra) {
           var config = (require('../lib').Config)();
-          Lab.expect(config.validateHost).to.eql({ host: 'localhost', port: 6000});
+          Code.expect(config.validateHost).to.deep.equal({ host: 'localhost', port: 6000});
           done();
         }
       });
@@ -165,12 +165,12 @@ Lab.experiment('cli', function() {
       cli.run();
     });
 
-    Lab.it('passes non-JSON strings through untouched', function(done) {
+    it('passes non-JSON strings through untouched', function(done) {
       var cli = Cli({
         yargs: require('yargs')(['start', '--validateHost', '{ whatevs }']),
         start: function(extra) {
           var config = (require('../lib').Config)();
-          Lab.expect(config.validateHost).to.eql('{ whatevs }');
+          Code.expect(config.validateHost).to.deep.equal('{ whatevs }');
           done();
         }
       });

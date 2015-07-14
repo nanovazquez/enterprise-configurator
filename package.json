@@ -4,7 +4,7 @@
   "description": "Shared config and cli helpers for npm Enterprise services.",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "lab -c --timeout=1000"
+    "test": "nyc mocha --check-leaks"
   },
   "license": "ISC",
   "repository": {
@@ -23,9 +23,11 @@
     "lodash": "^2.4.1",
     "numbat-emitter": "~1.1.1",
     "string": "^1.9.0",
-    "yargs": "^1.2.6"
+    "yargs": "^3.15.0"
   },
   "devDependencies": {
-    "lab": "^3.2.1"
+    "code": "^1.4.1",
+    "mocha": "^2.2.5",
+    "nyc": "^3.0.0"
   }
 }
